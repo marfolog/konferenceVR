@@ -1,0 +1,45 @@
+body {
+    background:#67d5db;
+}
+
+.panel-users {
+    background:#333;
+    color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+}
+
+.table-users{
+    border: 1px solid white;
+    background:#333;
+    color: azure;
+}
+
+.table-header{   
+    background:#222323;
+}
+
+.customers-td {
+  border: 1px solid white;
+  padding: 8px;
+}
+
+.edit-a{
+    color:aqua;
+    font-weight: 300;
+}
+
+.edit-a:hover{
+    color:yellow;
+}
+
+.select_in_table {
+    width: auto;
+}
+
+.nav_own {
+     padding-top: 10px;
+     border-radius: 0px;
+	 font-size: 18px;
+}
