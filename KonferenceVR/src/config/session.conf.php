@@ -13,5 +13,10 @@ define('SS_TRIED_REGISTER', 'TriedReg'); //true,false
 
 
 //___________________________________________________________
+//---------------------------FOR ARTICLE---------------------
+define('SS_ARTICLE_LOG', 'ArticleLog'); //titleIsEmpty, abstractIsEmpty, articleSent
+define('SS_TRIED_ARTICLE', 'TriedArt'); //true,false
+define('SS_TITLE', 'title_article'); //prostě titulek
+define('SS_ABSTRACT', 'title_abstract'); //prostě titulek
 
 ?>

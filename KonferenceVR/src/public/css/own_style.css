@@ -41,5 +41,27 @@ body {
 .nav_own {
      padding-top: 10px;
      border-radius: 0px;
-	 font-size: 18px;
+	 font-size: 15px;
+}
+
+
+.own_textArea{ 
+    height: 250px;
+}
+
+.btn-own{
+   background:#67d5db;
+    color: black;
+    
+}
+
+.articleMessSent{
+    color:#67d5db;
+    font-weight: 800;
+    font-size:20px;
+}
+
+.articleMessErr{
+    color:red;
+    font-weight: 300;
 }
