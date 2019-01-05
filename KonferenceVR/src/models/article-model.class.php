@@ -1,5 +1,5 @@
 <?php 
-class AddArticle_Model extends Model {
+class Article_Model extends Model {
     
 
     public function __construct(){ 
@@ -64,7 +64,7 @@ class AddArticle_Model extends Model {
                       Session::addSession(SS_TRIED_ARTICLE,'true');
                       
                     
-                      if(AddArticle_Model::moveFile()){
+                      if(Article_Model::moveFile()){
                           //save
                            $dirToFile = Session::readSession(SS_FILE);
                            echo "save: ".$dirToFile;
@@ -82,6 +82,23 @@ class AddArticle_Model extends Model {
                   }    
                 }     
               
+    }
+    
+
+    
+    
+    public function getArticle($id){
+       $query = "SELECT id, date, author, title, text, path_to_file, status FROM ".DB_ARTICLES_TABLE." WHERE `id` = '".$id."'";
+        $out = $this->executeQuery($query);
+        //sql injectin??
+        if($out != null || !isset($out)){
+            $articles = $out->fetchAll();
+             if(!isset($articles) || count($articles) == 0){
+                 return null;
+             } else {
+                 return $articles[0];
+            }
+        }
     }
 
     

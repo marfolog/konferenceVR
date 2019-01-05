@@ -1,5 +1,5 @@
 <?php
-    class AddArticle extends Controller {
+    class Article extends Controller {
         
         function __construct(){
             parent::__construct();
@@ -32,15 +32,31 @@
             }
             
             Session::addSession(SS_TRIED_REGISTER, 'false'); 
-            
-            $this->view->render('addarticle'); 
+            $this->view->editArticle =null;
+            $this->view->render('article'); 
   
           }
         
         
-          function preprocessingArticle(){
+        function add(){
+            Session::addSession(SS_TYPE_ARTICLE_WEB, 'add');
+        }
+
+        function edit($id){ 
+            Session::addSession(SS_TYPE_ARTICLE_WEB, 'edit');
+            Session::addSession(SS_EDIT_ARTICLE, $this->model->getArticle($id));
+        }
+        
+        
+        function preprocessingArticle(){
              $this->model->preprocessingArticle();
-          }
+        }
+        
+        
+        function editArticle(){
+            //--> pro tlačitko  který změní příspěvek--editovací příspěvek
+            //$this
+        }
         
         
         function verifyLog(){

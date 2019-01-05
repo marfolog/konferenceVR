@@ -19,5 +19,6 @@ define('SS_TRIED_ARTICLE', 'TriedArt'); //true,false
 define('SS_TITLE', 'title_article'); //prostě titulek
 define('SS_ABSTRACT', 'title_abstract'); //abstract
 define('SS_FILE', 'error_file'); //not_correct_format, error_upload, cesta k souboru do uploads
-
+define('SS_TYPE_ARTICLE_WEB','type_article'); //add,edit
+define('SS_EDIT_ARTICLE','edit article'); // je zde cely radek z databaze article--> jedna seo clanek, ktery chci editovat
 ?>

@@ -1,5 +1,4 @@
 
-
 <div class="panel panel-users"><div class="panel-users"><h3>Moje příspěvky</h3></div>
 
 
@@ -11,12 +10,12 @@
                         <div class="title">
                             <div>
                                 <span style="float:left; color:#333; font-weight:800;  font-size: 25px;" ><?php echo $value['title']; echo " (id:".$value['id'].")"; ?> </span>
-                                <span style="float:right;"><a style="color:blue;" href="index.php?page=myarticles/editArticle/<?php echo $value['id'];?>">Editovat</a>    <a style="color:yellow;" href="index.php?page=myarticles/deleteArticle/<?php echo $value['id'];?>" >Smazat</a></span>
+                                <span style="float:right;"><a style="color:blue;" href="index.php?page=article/edit/<?php echo $value['id'];?>">Editovat</a>    <a style="color:yellow;" href="index.php?page=myarticles/deleteArticle/<?php echo $value['id'];?>" >Smazat</a></span>
                             </div> 
                             <br><br>
                             <div style=" color:white;  font-size: 15px;" >
                                     <?php if($value['status'] == '0'){
-                                            echo "(V recenzním řízení)";
+                                            echo "(Recenzní řízení)";
                                         } else if ($value['status'] == '1'){
                                             echo "(Publikováno + bodů: )";
                                         } else {
@@ -43,3 +42,7 @@
     
 
 </div>
+
+</div>
+    
+    
