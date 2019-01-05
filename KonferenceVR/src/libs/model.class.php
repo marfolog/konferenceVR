@@ -1,11 +1,13 @@
 <?php 
     class Model {
         
+        public $db;
+        
         function __construct(){
             $this->db = new Database();
+          //  echo "Create main model.<br>";
         }
-        
-        
+
         
         public function executeQuery($dotaz){
             $res = $this->db->query($dotaz);
@@ -61,8 +63,6 @@
             }
         }
         
-        
-        
         public function getAllUsersFromDB(){
             $query = "SELECT id, login, status, block FROM ".DB_USER_TABLE;
             $out = $this->executeQuery($query);
@@ -75,6 +75,22 @@
             }
         }
         
+        
+        public function getUserArticlesFromDB(){
+            $query = "SELECT id, date, author, title, text, path_to_file, status FROM ".DB_ARTICLES_TABLE." WHERE `author` = '".CurrentUser::getNameCurrentUser()."'";
+            $out = $this->executeQuery($query);
+            //sql injectin??
+            if($out != null || !isset($out)){
+                $articles = $out->fetchAll();
+                 if(!isset($articles) || count($articles) == 0){
+                     return null;
+                 } else {
+                     return $articles;
+                }
+            }
+        }
+        
+        
             
     
         public function loginUserToSession($user){
@@ -85,6 +101,22 @@
             Session::addSession(SS_LOGIN_STATUS, 'user_logged');
             Session::addSession(SS_TRIED_LOGGIN, 'false');
             header('location: index.php?page=index');
+        }
+        
+        
+        public function saveArticleToDB($date, $author, $title, $text, $path_to_file){
+             //echo "<br>".$date."<br>";
+            //echo $author."<br>";
+            //echo $title."<br>";
+            //echo $text."<br>";
+            //echo $path_to_file."<br>";
+            if(isset($date) && isset($author) && isset($title) && isset($text) && isset($path_to_file)){
+                    $query = "INSERT INTO ".DB_ARTICLES_TABLE." (date, author, title, text, path_to_file) VALUES ('$date', '$author','$title', '$text','$path_to_file');";
+                     $this->executeQuery($query);
+                    return true; 
+                } else {
+                    return false;
+            } 
         }
         
         

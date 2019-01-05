@@ -9,7 +9,7 @@
         require '../libs/user-current.class.php';
 
         require '../config/database.conf.php';
-         require '../config/session.conf.php';
+        require '../config/session.conf.php';
         require '../libs/database.class.php';
 
         $app = new Bootstrap();

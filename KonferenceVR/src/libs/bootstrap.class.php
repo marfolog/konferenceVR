@@ -56,8 +56,8 @@ class Bootstrap{
     
     
     function error(){
-        require '../controllers/OwnError.cont.php';
-        $controller = new OwnError();
+        require '../controllers/custom-error.cont.php';
+        $controller = new CustomError();
         $controller->showView(); 
         return false;
     }

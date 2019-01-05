@@ -4,7 +4,7 @@
 <div class="panel panel-users">
  
 <div class="panel-heading"> <h3>Přidání příspěvku</h3></div> 
-<form class="form-horizontal" action="index.php?page=article/preprocessingArticle" method="post"  id="article_form">
+<form class="form-horizontal" action="index.php?page=addarticle/preprocessingArticle"  enctype="multipart/form-data" method="post"  id="article_form">
 <div class="form-group">
   <label class="col-md-4 control-label">Autor:</label>  
   <div class="col-md-4 inputGroupContainer">
@@ -70,21 +70,20 @@
 <div class="form-group">
     <label class="col-md-4 control-label">Připojený soubor:</label>
     <div class="col-md-4 inputGroupContainer input-group input-file">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-cloud-upload"></i></span>
-        <input type="text" class="form-control" placeholder='Soubor...' />			
+        <span class="input-group-addon"><i class="glyphicon glyphicon-cloud-upload"></i></span>	
         <span class="input-group-btn">
-            <button class="btn btn-default btn-choose" type="button">Vybrat</button>
+            <input class="btn btn-choose btn-own" id="fileToUpload" name="fileToUpload" type="file">
         </span>
 
 
     </div>
-</div>
+</div
     
 <!----------------verify---------------------> 
  <div class="form-group">
         <label class="col-md-4 control-label"></label>
         <label class="col-md-4 form-check-label">
-                   <?php Article::verifyLog()?>
+                   <?php AddArticle::verifyLog()?>
         </label>
 </div>
 <!-- Button -->

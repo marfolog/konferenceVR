@@ -14,9 +14,10 @@ define('SS_TRIED_REGISTER', 'TriedReg'); //true,false
 
 //___________________________________________________________
 //---------------------------FOR ARTICLE---------------------
-define('SS_ARTICLE_LOG', 'ArticleLog'); //titleIsEmpty, abstractIsEmpty, articleSent
+define('SS_ARTICLE_LOG', 'ArticleLog'); //titleIsEmpty, abstractIsEmpty, articleReady
 define('SS_TRIED_ARTICLE', 'TriedArt'); //true,false
 define('SS_TITLE', 'title_article'); //prostě titulek
-define('SS_ABSTRACT', 'title_abstract'); //prostě titulek
+define('SS_ABSTRACT', 'title_abstract'); //abstract
+define('SS_FILE', 'error_file'); //not_correct_format, error_upload, cesta k souboru do uploads
 
 ?>

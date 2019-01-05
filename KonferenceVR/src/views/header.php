@@ -33,8 +33,8 @@
                 <?php if (CurrentUser::getStatusCurrentUser() != null && CurrentUser::getStatusCurrentUser() == "admin") { ?>
                     <li><a href="index.php?page=users">Správa uživatelů</a></li>
                 <?php } else if (CurrentUser::getStatusCurrentUser() != null && CurrentUser::getStatusCurrentUser() == "autor"){ ?>
-                    <li><a href="index.php?page=users">Vlastní příspěvky</a></li>
-                    <li><a href="index.php?page=article">Přidání příspěvku</a></li>
+                    <li><a href="index.php?page=myarticles">Moje příspěvky</a></li>
+                    <li><a href="index.php?page=addarticle">Přidání příspěvku</a></li>
                 <?php } ?>
             <?php }?>
           
