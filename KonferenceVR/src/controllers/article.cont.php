@@ -48,18 +48,17 @@
         }
         
         
-        function preprocessingArticle(){
-             $this->model->preprocessingArticle();
+        function confirmArticle(){
+             $this->model->preprocessingArticle(null);
         }
         
         
-        function editArticle(){
-            //--> pro tlačitko  který změní příspěvek--editovací příspěvek
-            //$this
+        function editArticle($id){
+            $this->model->preprocessingArticle($id);
         }
         
         
-        function verifyLog(){
+        function verifyLog($type){
             if(Session::readSession(SS_TRIED_ARTICLE) == 'true'){
 
                  switch (Session::readSession(SS_FILE)) {
@@ -80,7 +79,13 @@
                             echo "<div class ='articleMessErr'>Doplňte titulek příspěvku</div>";
                             break;
                         case 'articleReady':
-                            echo "<div class ='articleMessSent'>Příspěvek odeslán</div>";
+                            echo "<div class ='articleMessSent'>";
+                            if($type=="edit"){
+                                echo "Příspěvek editován - odeslán k posouzení";
+                            } else {
+                                 echo "Příspěvek odeslán k posouzení";
+                            } 
+                            echo "</div>";
                             break;
                             case 'not_save':
                             echo "<div class ='articleMessSent'>Nepovedlo se uložit do databáze</div>";

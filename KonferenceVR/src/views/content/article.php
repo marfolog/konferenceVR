@@ -6,7 +6,7 @@
     <div class="panel panel-users">
 
     <div class="panel-heading"> <h3>Přidání příspěvku</h3></div> 
-    <form class="form-horizontal" action="index.php?page=article/preprocessingArticle"  enctype="multipart/form-data" method="post"  id="article_form">
+    <form class="form-horizontal" action="index.php?page=article/confirmArticle"  enctype="multipart/form-data" method="post"  id="article_form">
     <div class="form-group">
       <label class="col-md-4 control-label">Autor:</label>  
       <div class="col-md-4 inputGroupContainer">
@@ -85,7 +85,7 @@
      <div class="form-group">
             <label class="col-md-4 control-label"></label>
             <label class="col-md-4 form-check-label">
-                       <?php Article::verifyLog()?>
+                       <?php Article::verifyLog("add")?>
             </label>
     </div>
     <!-- Button -->
@@ -109,7 +109,7 @@
         <div class="panel panel-users">
 
         <div class="panel-heading"> <h3>Edit příspěvku</h3></div> 
-        <form class="form-horizontal" action="index.php?page=article/preprocessingArticle"  enctype="multipart/form-data" method="post"  id="article_form">
+        <form class="form-horizontal" action="index.php?page=article/editArticle/<?php echo $editArticle['id']; ?>"  enctype="multipart/form-data" method="post"  id="article_form">
         <div class="form-group">
           <label class="col-md-4 control-label">Autor:</label>  
           <div class="col-md-4 inputGroupContainer">
@@ -177,7 +177,7 @@
 
 
         <div class="form-group">
-            <label class="col-md-4 control-label" style="color:yellow;">Připojit nový soubor:</label>
+            <label class="col-md-4 control-label" style="color:yellow;">Nahradit soubor novým:</label>
             <div class="col-md-4 inputGroupContainer input-group input-file">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-cloud-upload"></i></span>	
                 <span class="input-group-btn">
@@ -192,7 +192,7 @@
          <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <label class="col-md-4 form-check-label">
-                           <?php Article::verifyLog()?>
+                           <?php Article::verifyLog("edit")?>
                 </label>
         </div>
         <!-- Button -->

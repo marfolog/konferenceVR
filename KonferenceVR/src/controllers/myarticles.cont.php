@@ -41,7 +41,8 @@
         
         
          function deleteArticle($id){   
-          $this->model->deleteArticle($id);  
+          $this->model->deleteArticle($id);
+          header('location: index.php?page=myarticles');
          } 
          
         

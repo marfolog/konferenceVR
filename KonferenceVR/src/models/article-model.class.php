@@ -38,7 +38,7 @@ class Article_Model extends Model {
     
     
     
-    public function preprocessingArticle(){ 
+    public function preprocessingArticle($id){ 
          if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   $authorOutput = CurrentUser::getNameCurrentUser();
                   $dateOutput =  date("j. n. Y");
@@ -71,11 +71,19 @@ class Article_Model extends Model {
                           
                            $inputTitle = $_POST['inputTitle'];
                            $output =  $_POST['abstract']; 
-                           if(Model::saveArticleToDB(date("Y-m-d H.i.s"), $authorOutput, $inputTitle, $output, $dirToFile)){
-                               Session::addSession(SS_ARTICLE_LOG,'articleReady'); 
+                          if($id == null){
+                               if(Model::saveArticleToDB(date("Y-m-d H.i.s"), $authorOutput, $inputTitle, $output, $dirToFile)){
+                                   Session::addSession(SS_ARTICLE_LOG,'articleReady'); 
+                               } else {
+                                   Session::addSession(SS_ARTICLE_LOG,'not_save'); 
+                               }
                            } else {
-                               Session::addSession(SS_ARTICLE_LOG,'not_save'); 
-                           }
+                              if(Model::editArticleInDB($id, date("Y-m-d H.i.s"), $inputTitle, $output, $dirToFile)){
+                                   Session::addSession(SS_ARTICLE_LOG,'articleReady'); 
+                               } else {
+                                   Session::addSession(SS_ARTICLE_LOG,'not_save'); 
+                               }
+                          }
                       } else {
                            Session::addSession(SS_ARTICLE_LOG,'articleNotReady'); 
                       }

@@ -119,6 +119,28 @@
             } 
         }
         
+        public function editArticleInDB($id, $date, $inputTitle, $output, $dirToFile){
+             echo "<br> id: ".$id."<br>";
+            echo $date." - > datum<br>";
+            echo $authorOutput." -> autor<br>";
+            echo $inputTitle." -> titulek <br>";
+            echo $output." -> text<br>";
+            echo $dirToFile."-> cesta k souboru<br>";
+            if(isset($id) && isset($date) && isset($inputTitle) && isset($output) && isset($dirToFile)){
+                if($dirToFile == "nothing") {
+                    $query = "UPDATE ".DB_ARTICLES_TABLE." SET `status` = '0', date='$date', title='$inputTitle', text='$output' WHERE `id` = '$id'";
+                } else {
+                    $query = "UPDATE ".DB_ARTICLES_TABLE." SET `status` = '0', date='$date', title='$inputTitle', text='$output', path_to_file='$dirToFile' WHERE `id` = '$id'";
+                }
+                 
+                $this->executeQuery($query);
+                return true; 
+            } else {
+                echo "vracim nepovedlo se!";
+                    return false;
+            }
+        }
+        
         
     }
     
