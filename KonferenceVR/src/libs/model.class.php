@@ -122,7 +122,6 @@
         public function editArticleInDB($id, $date, $inputTitle, $output, $dirToFile){
              echo "<br> id: ".$id."<br>";
             echo $date." - > datum<br>";
-            echo $authorOutput." -> autor<br>";
             echo $inputTitle." -> titulek <br>";
             echo $output." -> text<br>";
             echo $dirToFile."-> cesta k souboru<br>";
