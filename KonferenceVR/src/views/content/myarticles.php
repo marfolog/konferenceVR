@@ -4,7 +4,7 @@
 
 <div class="row">
 			
-    <?php if(isset($this->myArticles) &&  $this->myArticles > 0){
+    <?php if(isset($this->myArticles) &&  count($this->myArticles) > 0){
               foreach($this->myArticles as $key => $value){ ?>
                     <div class="box-myarticles text-justify">
                         <div class="title">
@@ -17,9 +17,9 @@
                                     <?php if($value['status'] == '0'){
                                             echo "(Recenzní řízení)";
                                         } else if ($value['status'] == '1'){
-                                            echo "(Publikováno + bodů: )";
+                                            echo "(Publikováno)";
                                         } else {
-                                             echo "(Nepřijmuto + bodů: )";
+                                             echo "(Nepřijmuto)";
                                         } ?> 
                             </div>
                             <div class='info_myarticles'>Datum:  <?php echo $value['date'] ?></div>

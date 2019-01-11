@@ -20,8 +20,6 @@ class Controller {
             $modelName = $name.'_Model';
             //echo "Load model: ".$modelName."<br>";
             $this->model = new $modelName();            
-        }else {
-            echo "Don't load model.";
         }
     }
 }

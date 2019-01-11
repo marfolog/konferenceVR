@@ -1,5 +1,5 @@
 <?php
-    class Users extends Controller {
+    class ServiceUsers extends Controller {
         
         function __construct(){
             parent::__construct();
@@ -15,6 +15,8 @@
         }
         
         function showView(){
+            Session::addSession(SS_TRIED_REVIEW, 'false');
+            
             $logged = Session::readSession(SS_LOGIN_STATUS);
             $status = CurrentUser::getStatusCurrentUser();
             if($logged != "user_logged" || $status != "admin"){
@@ -22,7 +24,7 @@
                 exit;
             } else {
                 $this->view->userList = $this->model->userList();
-                $this->view->render("users");
+                $this->view->render("serviceUsers");
             }  
         }
         
@@ -39,10 +41,12 @@
         
         function deleteUsers($id){
             $this->model->deleteUsers($id);
+             header('location: index.php?page=serviceUsers');
         }
         
         function blockUser($id){
             $this->model->blockUser($id);
+             header('location: index.php?page=serviceUsers');
         }
         
     }

@@ -1,5 +1,5 @@
 <?php
-    class Users_Model extends Model{
+    class ServiceUsers_Model extends Model{
         
         public function __construct(){
               parent::__construct();
@@ -47,7 +47,7 @@
                      header('location: index.php?page=index');
                  }  
               }
-              header('location: index.php?page=users');
+              header('location: index.php?page=serviceUsers');
         }
         
         
@@ -59,7 +59,7 @@
                 $query = "UPDATE `users` SET `block`= 'true' WHERE `id` = '$idUser'";
                 $out = $this->executeQuery($query); 
             }
-             header('location: index.php?page=users');
+             header('location: index.php?page=serviceUsers');
            
         }
         
@@ -67,7 +67,7 @@
                 $query = "SELECT `block` FROM ".DB_USER_TABLE." WHERE `id` = '$idUser'";
                 $out = $this->executeQuery($query); 
                 $block = $out->fetchAll();
-               // echo "<br> 2. ".$block[0][0]."<br>";
+
                 if(isset($block)){
                     if($block[0][0] == 'true'){
                         return true;
@@ -76,6 +76,27 @@
                     }   
                 }
         }
+        
+        
+        
+                
+          public static function getRuleForSelect($status){
+              if($status =="admin"){
+                  $out = "<option selected value='0'>Administrátor</option> 
+                    <option value='1'>Autor</option>
+                    <option value='2'>Recenzent</option>";
+              } else if($status =="autor"){
+                   $out = "<option value='0'>Administrátor</option> 
+                    <option selected value='1'>Autor</option>
+                    <option value='2'>Recenzent</option>";
+              } else if($status =="recenzent"){
+                   $out = "<option selected value='0'>Administrátor</option> 
+                    <option value='1'>Autor</option>
+                    <option selected value='2'>Recenzent</option>";
+              }
+            
+            return $out;   
+         }
         
         
        

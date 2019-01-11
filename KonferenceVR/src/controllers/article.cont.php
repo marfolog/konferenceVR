@@ -62,6 +62,9 @@
             if(Session::readSession(SS_TRIED_ARTICLE) == 'true'){
 
                  switch (Session::readSession(SS_FILE)) {
+                        case 'non_exist':
+                            echo "<div class ='articleMessErr'>Chybí příloha</div>";
+                                break;
                         case 'not_correct_format':
                             echo "<div class ='articleMessErr'>Soubor není ve formátu pdf</div>";
                             break;

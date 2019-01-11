@@ -31,11 +31,14 @@
             if(Session::readSession('LoginStatus') == 'user_logged'){ ?>
 
                 <?php if (CurrentUser::getStatusCurrentUser() != null && CurrentUser::getStatusCurrentUser() == "admin") { ?>
-                    <li><a href="index.php?page=users">Správa uživatelů</a></li>
+                    <li><a href="index.php?page=serviceUsers">Správa uživatelů</a></li>
+                    <li><a href="index.php?page=serviceArticles">Správa příspěvků</a></li>
                 <?php } else if (CurrentUser::getStatusCurrentUser() != null && CurrentUser::getStatusCurrentUser() == "autor"){ ?>
                     <li><a href="index.php?page=myarticles">Moje příspěvky</a></li>
                     <li><a href="index.php?page=article/add">Přidání příspěvku</a></li>
-                <?php } ?>
+                <?php } else if(CurrentUser::getStatusCurrentUser() != null && CurrentUser::getStatusCurrentUser() == "recenzent"){ ?>
+                                <li><a href="index.php?page=articlesForRating">Příspěvky k posouzení</a></li>
+                    <?php } ?>
             <?php }?>
           
           </ul>

@@ -13,7 +13,7 @@ class Article_Model extends Model {
             $target_file = $target_dir.basename($_FILES['fileToUpload']["name"]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-            Session::addSession(SS_FILE, 'nothing');
+            Session::addSession(SS_FILE, 'non_exist');
             if (file_exists($target_file) == false){
                 //add date
                 $target_file = substr($target_file, 0, -4);
@@ -33,7 +33,7 @@ class Article_Model extends Model {
                         return false;
                 }
            }
-           return true;
+           return false;
     }
     
     
@@ -62,13 +62,11 @@ class Article_Model extends Model {
                       Session::addSession(SS_ABSTRACT, null);
                       Session::addSession(SS_TITLE, null);
                       Session::addSession(SS_TRIED_ARTICLE,'true');
-                      
                     
                       if(Article_Model::moveFile()){
                           //save
                            $dirToFile = Session::readSession(SS_FILE);
-                           echo "save: ".$dirToFile;
-                          
+                           //echo "save: ".$dirToFile;
                            $inputTitle = $_POST['inputTitle'];
                            $output =  $_POST['abstract']; 
                           if($id == null){
@@ -85,6 +83,8 @@ class Article_Model extends Model {
                                }
                           }
                       } else {
+                           Session::addSession(SS_TITLE, $_POST['inputTitle']);
+                           Session::addSession(SS_ABSTRACT, $_POST['abstract']);
                            Session::addSession(SS_ARTICLE_LOG,'articleNotReady'); 
                       }
                   }    

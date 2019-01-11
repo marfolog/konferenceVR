@@ -12,16 +12,16 @@
      <table class="table table-users">
        <thead class="table-header">
         <tr>
-            <th class='customers-td' rowspan="1" colspan="1" >
+            <th class='customers-td' rowspan="2" colspan="1" >
                 #
             </th>
-            <th class='customers-td' rowspan="1" colspan="1">
+            <th class='customers-td' rowspan="2" colspan="1">
                 Uživatelské jméno
             </th>
-            <th class='customers-td'rowspan="1" colspan="2">
+            <th class='customers-td'rowspan="2" colspan="2">
                 Role (status)
             </th>
-            <th class='customers-td' rowspan="1" colspan="2" >
+            <th class='customers-td' rowspan="2" colspan="2" >
                 Blokace
             </th>
         </tr>
@@ -47,17 +47,17 @@
                     echo "Autor";
                 }
                 echo "</td>";
-                echo "<td class='customers-td' ><form method='post' name='form_status' action='index.php?page=users/changeStatus/".$value['id']."'>
+                echo "<td class='customers-td' ><form method='post' name='form_status' action='index.php?page=serviceUsers/changeStatus/".$value['id']."'>
                           <select name='selectStatus' id='selectRule' class='form-control select_in_table'>";
                 
-                echo $this->getRuleForSelect($value['status']);
+                echo ServiceUsers_Model::getRuleForSelect($value['status']);
                 
                 echo "</select><input class='form-control select_in_table' type='submit' value='Změnit'></form></td>";  
                 echo "<td class='customers-td'>" ;
                     if($value['block'] == 'true'){echo "Ano";} else {echo "Ne";}
                 echo  "</td>";
-                echo "<td class='customers-td edit-a'><a href='index.php?page=users/blockUser/".$value['id']."' class='edit-a'>Upravit</a></td>";
-                echo "<td class='customers-td edit-a'><a href='index.php?page=users/deleteUsers/".$value['id']."'/ class='edit-a'>Odstranit</a></td>";
+                echo "<td class='customers-td edit-a'><a href='index.php?page=serviceUsers/blockUser/".$value['id']."' class='edit-a'>Upravit</a></td>";
+                echo "<td class='customers-td edit-a'><a href='index.php?page=serviceUsers/deleteUsers/".$value['id']."'/ class='edit-a'>Odstranit</a></td>";
                 echo "</tr>";
             }
          } else {

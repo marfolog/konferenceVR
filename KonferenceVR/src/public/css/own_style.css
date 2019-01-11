@@ -22,16 +22,18 @@ body {
 
 .customers-td {
   border: 1px solid white;
-  padding: 8px;
+  padding: 8px; 
+  text-align: center;
 }
+
 
 .edit-a{
     color:aqua;
     font-weight: 300;
 }
 
-.edit-a:hover{
-    color:yellow;
+.edit-a: hover{
+    color: yellow;
 }
 
 .select_in_table {

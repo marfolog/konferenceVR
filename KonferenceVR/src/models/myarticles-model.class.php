@@ -21,7 +21,23 @@ class MyArticles_Model extends Model {
     
     
         public function deleteArticle($id){
+            $query = "SELECT path_to_file FROM ".DB_ARTICLES_TABLE." WHERE `id` = '".$id."'";
+            $out = $this->executeQuery($query);
+            //sql injectin??
+            if($out != null || !isset($out)){
+                $path = $out->fetchAll();
+                 if(isset($path) && count($path) != 0){
+                    // echo "Pole: ".print_r($path[0][0]);
+                    if ($path[0][0] != "nothing") {
+                            unlink($path[0][0]);
+                    }
+                }
+            }
+            
              $query = "DELETE FROM ".DB_ARTICLES_TABLE." WHERE `id` = '$id'";
+             $out = $this->executeQuery($query);
+            
+             $query = "DELETE FROM ".DB_REVIEW_TABLE." WHERE `id_article` = '$id'";
              $out = $this->executeQuery($query);
         }
         

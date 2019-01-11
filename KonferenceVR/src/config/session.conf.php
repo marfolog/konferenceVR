@@ -21,4 +21,18 @@ define('SS_ABSTRACT', 'title_abstract'); //abstract
 define('SS_FILE', 'error_file'); //not_correct_format, error_upload, cesta k souboru do uploads
 define('SS_TYPE_ARTICLE_WEB','type_article'); //add,edit
 define('SS_EDIT_ARTICLE','edit article'); // je zde cely radek z databaze article--> jedna seo clanek, ktery chci editovat
+
+
+
+//--------------------FOR_REVIEWE-------------------
+define('SS_TRIED_REVIEW', 'try_reviewe');//true/false SS_REVIEW_LOG
+define('SS_REVIEW_LOG', 'review_log');//true/false
+define('SS_REVIEW_LOG_ID', 'review_log_id');//id_article
+
+//--------------------FOR_RATING-------------------
+define('SS_TRIED_RATING', 'try_reviewe');//true/false SS_REVIEW_LOG
+define('SS_RATING_LOG', 'rating_log');//true/false
+define('SS_RATING_LOG_ID', 'tating_log_id');//id_rating_article
+
+
 ?>

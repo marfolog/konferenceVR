@@ -26,6 +26,14 @@ class CurrentUser {
              }
         }
     
+        public static function getidCurrentUser(){
+             if(CurrentUser::isUserLoggedIn()){
+                 return Session::readSession(SS_USER)['id'];
+             } else {
+                 return null;
+             }
+        }
+    
          public static function getStatusStringCurrentUser(){
              if(CurrentUser::isUserLoggedIn()){
                  if(Session::readSession(SS_USER)['status'] == "admin") return "Administrátor";
