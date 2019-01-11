@@ -8,7 +8,7 @@ class Article_Model extends Model {
     }
     
     
-   function moveFile(){
+   function moveFile($id){
             $target_dir = "../uploads/";
             $target_file = $target_dir.basename($_FILES['fileToUpload']["name"]);
             $uploadOk = 1;
@@ -33,7 +33,14 @@ class Article_Model extends Model {
                         return false;
                 }
            }
-           return false;
+            /*V editačním modu chceme i soubor ponehcat protto vrátimu true že je vše ok*/
+            if($id == null){
+                return false;
+            } else {
+                 Session::addSession(SS_FILE, 'ok');
+                return true;
+            }
+
     }
     
     
@@ -63,20 +70,19 @@ class Article_Model extends Model {
                       Session::addSession(SS_TITLE, null);
                       Session::addSession(SS_TRIED_ARTICLE,'true');
                     
-                      if(Article_Model::moveFile()){
+                      if(Article_Model::moveFile($id)){
                           //save
                            $dirToFile = Session::readSession(SS_FILE);
-                           //echo "save: ".$dirToFile;
                            $inputTitle = $_POST['inputTitle'];
                            $output =  $_POST['abstract']; 
                           if($id == null){
-                               if(Model::saveArticleToDB(date("Y-m-d H.i.s"), $authorOutput, $inputTitle, $output, $dirToFile)){
+                               if($this->saveArticleToDB(date("Y-m-d H.i.s"), $authorOutput, $inputTitle, $output, $dirToFile)){
                                    Session::addSession(SS_ARTICLE_LOG,'articleReady'); 
                                } else {
                                    Session::addSession(SS_ARTICLE_LOG,'not_save'); 
                                }
                            } else {
-                              if(Model::editArticleInDB($id, date("Y-m-d H.i.s"), $inputTitle, $output, $dirToFile)){
+                              if($this->editArticleInDB($id, date("Y-m-d H.i.s"), $inputTitle, $output, $dirToFile)){
                                    Session::addSession(SS_ARTICLE_LOG,'articleReady'); 
                                } else {
                                    Session::addSession(SS_ARTICLE_LOG,'not_save'); 
@@ -92,7 +98,9 @@ class Article_Model extends Model {
               
     }
     
-
+//--------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------DATABASE-------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------- 
     
     
     public function getArticle($id){
@@ -108,6 +116,33 @@ class Article_Model extends Model {
             }
         }
     }
+    
+        /*add article*/
+    public function saveArticleToDB($date, $author, $title, $text, $path_to_file){
+        if(isset($date) && isset($author) && isset($title) && isset($text) && isset($path_to_file)){
+                 $query = "INSERT INTO ".DB_ARTICLES_TABLE." (date, author, title, text, path_to_file) VALUES ('$date', '$author','$title', '$text','$path_to_file');";
+                 $this->executeQuery($query);
+                return true; 
+            } else {
+                return false;
+        } 
+    }
+    
+    
+    public function editArticleInDB($id, $date, $inputTitle, $output, $dirToFile){
+            if(isset($id) && isset($date) && isset($inputTitle) && isset($output) && isset($dirToFile)){
+                if($dirToFile == "nothing") {
+                    $query = "UPDATE ".DB_ARTICLES_TABLE." SET `status` = '0', date='$date', title='$inputTitle', text='$output' WHERE `id` = '$id'";
+                } else {
+                    $query = "UPDATE ".DB_ARTICLES_TABLE." SET `status` = '0', date='$date', title='$inputTitle', text='$output', path_to_file='$dirToFile' WHERE `id` = '$id'";
+                }   
+                $this->executeQuery($query);
+                return true; 
+            } else {
+                echo "vracim nepovedlo se!";
+                    return false;
+            }
+        }
 
     
 }

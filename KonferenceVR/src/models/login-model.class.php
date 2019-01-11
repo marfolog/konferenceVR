@@ -33,36 +33,19 @@ class Login_Model extends Model {
                 Session::addSession(SS_TRIED_LOGGIN, 'true');
             }
        }
-}
-    
-    
-    public function verifyLog(){
-        if(Session::readSession(SS_TRIED_LOGGIN) == 'true'){
-            switch (Session::readSession(SS_LOGIN_STATUS)) {
-                    case 'user_logged':
-                        break;
-                    case 'uncorrect_user':
-                        echo "Bylo zadáno špatné uživatelské jméno nebo heslo<br>";
-                        break;
-                    case 'not_filled_form':
-                        echo "Nebylo vyplněno uživatelské jméno nebo heslo<br>";
-                        break;
-                    case 'block':
-                        echo "Ste zablokován administrátorem<br>";
-                        break;
-                    default: echo "";
-
-                }
-        } else {
-            echo "";
-        }
     }
     
+ 
+    
    public function logoutUser(){
-           Session::destroy();
            Session::addSession(SS_LOGIN_STATUS, 'logout');
    }
-
+    
+    
+//--------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------DATABASE-------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------- 
+//-funkce v materske tride
     
 
 }

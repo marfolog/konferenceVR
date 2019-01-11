@@ -13,7 +13,7 @@ class ArticlesForRating_Model extends Model {
     */
     public function getArticlesForRating(){
         $id = CurrentUser::getIdCurrentUser();
-        $review = Model::getReviewFromDB_ID_REVIEW($id);
+        $review = $this->getReviewFromDB_ID_REVIEW($id);
         return $review;      
     }
     
@@ -49,6 +49,10 @@ class ArticlesForRating_Model extends Model {
      
 }
     
+//--------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------DATABASE-------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------- 
+    
     
   public function updateRatingArticle($id_rating, $op_1, $op_2, $op_3, $op_4){
         if(isset($id_rating) && isset($op_1) && isset($op_2) && isset($op_3) && isset($op_4)){
@@ -61,6 +65,13 @@ class ArticlesForRating_Model extends Model {
                 return false;
         } 
     }
+    
+    public function getReviewFromDB_ID_REVIEW ($id_reviewer){
+           $query = "SELECT * FROM ".DB_REVIEW_TABLE." WHERE `id_reviewer` = '$id_reviewer' AND `total` = '0' ";
+           $out = $this->executeQuery($query);
+            //sql injectin??
+            return $review = $out->fetchAll();
+       }
     
     
 }

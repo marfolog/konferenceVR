@@ -1,5 +1,5 @@
 <?php
-    class Index extends Controller {
+    class PublicArticles extends Controller {
         
         function __construct(){
             parent::__construct();
@@ -15,8 +15,10 @@
             Session::addSession(SS_TRIED_REGISTER, 'false'); 
             Session::addSession(SS_TRIED_REVIEW, 'false');
             Session::addSession(SS_TRIED_RATING, 'false');
-
-            $this->view->render('index'); 
+              
+            $model = new Model();  
+            $this->view->publicArticle = $model->getPublicArticleFromDB();
+            $this->view->render('publicArticles'); 
   
           }
         

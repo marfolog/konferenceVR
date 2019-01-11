@@ -6,28 +6,13 @@
               Session::init();
         }
         
-        
-        
-        /*
-            Všechny články, ktere jsou v recnzijním řízení
-        */
-         public function getUserArticlesInReviewStatus(){
-            $articles= $this->getUserArticlesInReviewStatusFromDB(0);
-            if($articles != null){
-                return $articles;
-            } else {
-                return null;
-            }
-        }
        
-        
-        
         
         
            public static function getAllRecenzentForSlect($id_article, $select) {
                $model = new Model();
                $reviewers = $model->getUsersFromDB_STATUS("recenzent");
-               $review =   $model->getReviewFromDB_ID_ARTICLE($id_article);
+               $review =    $model->getReviewFromDB_ID_ARTICLE($id_article);
                $count = 1; 
                print_r($review);
                $out = null;
@@ -69,6 +54,20 @@
                }              
         }
         
+        
+                
+        public function publicArticle($id_article) {
+            $this->updateStatusArticle($id_article, 1);
+        }
+        
+        public function declineArticle($id_article) {
+            $this->updateStatusArticle($id_article, 2);
+        }
+        
+//--------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------DATABASE-------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------
+        
         public static function getPointArticleReview($id_article, $select,  $point){
                $model = new Model();
                $review =  $model->getReviewFromDB_ID_ARTICLE($id_article);
@@ -100,13 +99,45 @@
                 return false;
             }  
         }
+
         
-        public function publicArticle($id_article) {
-            Model::updateStatusArticle($id_article, 1);
+         /*V service Articles*/
+         public function updateStatusArticle($id_article, $status){
+            if(isset($id_article) && isset($status)){
+                     $query = "UPDATE ".DB_ARTICLES_TABLE." SET `status` = '$status' WHERE `id` = '$id_article'";
+                     $this->executeQuery($query);
+                    return true; 
+                } else {
+                    return false;
+            } 
         }
         
-        public function declineArticle($id_article) {
-            Model::updateStatusArticle($id_article, 2);
+          /*
+            Vráti článek z tabulky review z databaze podle id
+            je volana z ServiceArticles_Model kde je vyrvoren novy objekt Model
+        */
+        public function getReviewFromDB_ID_ARTICLE($id_article){
+           $query = "SELECT * FROM ".DB_REVIEW_TABLE." WHERE `id_article` = '$id_article'";
+            $out = $this->executeQuery($query);
+            //sql injectin??
+            return $review = $out->fetchAll();
+       }
+        
+         /*
+            Všechny články, ktere jsou v recnzijním řízení
+        */
+        public function getUserArticlesInReviewStatusFromDB(){
+            $query = "SELECT * FROM ".DB_ARTICLES_TABLE." WHERE `status` = '0' ";
+            $out = $this->executeQuery($query);
+            //sql injectin??
+            if($out != null || !isset($out)){
+                $articles = $out->fetchAll();
+                 if(!isset($articles) || count($articles) == 0){
+                     return null;
+                 } else {
+                     return $articles;
+                }
+            }
         }
 
                   

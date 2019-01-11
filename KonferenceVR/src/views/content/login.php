@@ -29,7 +29,7 @@
               </div>
               <div class="form-group form-check">
                 <label class="form-check-label" style="color:red;">
-                   <?php Login_Model::verifyLog() ?>
+                   <?php Login::verifyLog() ?>
                 </label>
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>

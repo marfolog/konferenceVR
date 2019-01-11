@@ -17,12 +17,23 @@
             }
         }
         
-        
-        public function deleteUsers($id){
-             $query = "DELETE FROM ".DB_USER_TABLE." WHERE `id` = '$id'";
-             $out = $this->executeQuery($query);
-        }
-        
+                
+          public static function getRuleForSelect($status){
+              if($status =="admin"){
+                  $out = "<option selected value='0'>Administrátor</option> 
+                    <option value='1'>Autor</option>
+                    <option value='2'>Recenzent</option>";
+              } else if($status =="autor"){
+                   $out = "<option value='0'>Administrátor</option> 
+                    <option selected value='1'>Autor</option>
+                    <option value='2'>Recenzent</option>";
+              } else if($status =="recenzent"){
+                   $out = "<option selected value='0'>Administrátor</option> 
+                    <option value='1'>Autor</option>
+                    <option selected value='2'>Recenzent</option>";
+              }
+            return $out;   
+         }
         
         
         public function changeStatusUser($status, $id){
@@ -36,6 +47,32 @@
         }
         
         
+        
+        
+//--------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------DATABASE-------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------- 
+        
+        /*vrátí všechny uživatele z databáze*/
+        public function getAllUsersFromDB(){
+            $query = "SELECT id, login, status, block FROM ".DB_USER_TABLE;
+            $out = $this->executeQuery($query);
+            //sql injectin??
+            $users = $out->fetchAll();
+             if(!isset($users) || count($users) == 0){
+                 return null;
+             } else {
+                 return $users;
+                 return $users;
+            }
+        }
+        
+        
+        public function deleteUsers($id){
+             $query = "DELETE FROM ".DB_USER_TABLE." WHERE `id` = '$id'";
+             $out = $this->executeQuery($query);
+        }
+          
         
         public function changeStatusUserInDB($id, $status){
               $query = "UPDATE ".DB_USER_TABLE." SET `status` = '$status' WHERE `id` = '$id'";
@@ -76,27 +113,7 @@
                     }   
                 }
         }
-        
-        
-        
-                
-          public static function getRuleForSelect($status){
-              if($status =="admin"){
-                  $out = "<option selected value='0'>Administrátor</option> 
-                    <option value='1'>Autor</option>
-                    <option value='2'>Recenzent</option>";
-              } else if($status =="autor"){
-                   $out = "<option value='0'>Administrátor</option> 
-                    <option selected value='1'>Autor</option>
-                    <option value='2'>Recenzent</option>";
-              } else if($status =="recenzent"){
-                   $out = "<option selected value='0'>Administrátor</option> 
-                    <option value='1'>Autor</option>
-                    <option selected value='2'>Recenzent</option>";
-              }
-            
-            return $out;   
-         }
+ 
         
         
        

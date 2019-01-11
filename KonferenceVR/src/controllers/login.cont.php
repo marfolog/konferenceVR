@@ -20,5 +20,34 @@
             $this->model->logoutUser();
         }
         
+        
+        
+        
+        
+        
+        
+        
+    public function verifyLog(){
+        if(Session::readSession(SS_TRIED_LOGGIN) == 'true'){
+            switch (Session::readSession(SS_LOGIN_STATUS)) {
+                    case 'user_logged':
+                        break;
+                    case 'uncorrect_user':
+                        echo "Bylo zadáno špatné uživatelské jméno nebo heslo<br>";
+                        break;
+                    case 'not_filled_form':
+                        echo "Nebylo vyplněno uživatelské jméno nebo heslo<br>";
+                        break;
+                    case 'block':
+                        echo "Ste zablokován administrátorem<br>";
+                        break;
+                    default: echo "";
+
+                }
+        } else {
+            echo "";
+        }
+    }
+        
     }
 ?>

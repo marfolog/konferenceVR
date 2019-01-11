@@ -24,7 +24,8 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li><img src="../public/pictures/logo.png" class="img-circle" height="50" alt="Logo"></li>
-            <li><a href="index.php?page=index">Příspěvky</a></li>
+            <li><a href="index.php?page=index">Úvod</a></li>
+            <li><a href="index.php?page=publicArticles">Příspěvky</a></li>
             
 
             <?php Session::init(); 

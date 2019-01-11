@@ -20,7 +20,7 @@
                 header('location: index.php?page=index');
                 exit;
             } else {
-                $this->view->articles = $this->model->getUserArticlesInReviewStatus();
+                $this->view->articles = $this->model->getUserArticlesInReviewStatusFromDB();
                 $this->view->render("serviceArticles");
             }  
         }
@@ -110,7 +110,7 @@
     }
         
     function declineArticle($id_article){
-        $this->model->Article($id_article);
+        $this->model->declineArticle($id_article);
         header('location: index.php?page=serviceArticles');   
     }
         

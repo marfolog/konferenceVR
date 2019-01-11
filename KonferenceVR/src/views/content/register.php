@@ -20,7 +20,7 @@
                 <input type="password" class="form-control" name="pass2" id="b"  oninput="out.value=(a.value==b.value)?'Hesla jsou stejná':'Hesla jsou různá';">
             </div>
             <div class="form-group">
-                <output id="output" style=" font-weight: bold; color:blue;" name="out" for=" a b"><?php echo Register_Model::verifyLog()?></output>
+                <output id="output" style=" font-weight: bold; color:blue;" name="out" for=" a b"><?php echo Register::verifyLog()?></output>
             </div>
               <button type="submit" class="btn btn-primary">Registrovat</button>
         </form>

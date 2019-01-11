@@ -19,6 +19,10 @@ class MyArticles_Model extends Model {
     
     
     
+//--------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------DATABASE-------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------- 
+    
     
         public function deleteArticle($id){
             $query = "SELECT path_to_file FROM ".DB_ARTICLES_TABLE." WHERE `id` = '".$id."'";
@@ -39,6 +43,22 @@ class MyArticles_Model extends Model {
             
              $query = "DELETE FROM ".DB_REVIEW_TABLE." WHERE `id_article` = '$id'";
              $out = $this->executeQuery($query);
+        }
+    
+    
+    
+     public function getUserArticlesFromDB(){
+            $query = "SELECT id, date, author, title, text, path_to_file, status FROM ".DB_ARTICLES_TABLE." WHERE `author` = '".CurrentUser::getNameCurrentUser()."'";
+            $out = $this->executeQuery($query);
+            //sql injectin??
+            if($out != null || !isset($out)){
+                $articles = $out->fetchAll();
+                 if(!isset($articles) || count($articles) == 0){
+                     return null;
+                 } else {
+                     return $articles;
+                }
+            }
         }
         
 }

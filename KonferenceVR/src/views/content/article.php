@@ -71,7 +71,7 @@
 
     <div class="form-group">
         <label class="col-md-4 control-label">Připojený soubor:</label>
-        <div class="col-md-4 inputGroupContainer input-group input-file">
+        <div class="col-md-4 inputGroupContainer">
             <span class="input-group-addon"><i class="glyphicon glyphicon-cloud-upload"></i></span>	
             <span class="input-group-btn">
                 <input class="btn btn-choose btn-own" id="fileToUpload" name="fileToUpload" type="file">
@@ -99,6 +99,8 @@
     </form>
     </div>
 
+        
+    <!-- ---------------------------------------------V EDITAČNÍM MODU----------------------------------------------->
 <?php } else if (Session::readSession(SS_TYPE_ARTICLE_WEB) == 'edit') {
     
 
@@ -178,7 +180,7 @@
 
         <div class="form-group">
             <label class="col-md-4 control-label" style="color:yellow;">Nahradit soubor novým:</label>
-            <div class="col-md-4 inputGroupContainer input-group input-file">
+            <div class="col-md-4 inputGroupContainer">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-cloud-upload"></i></span>	
                 <span class="input-group-btn">
                     <input class="btn btn-choose btn-own" id="fileToUpload" name="fileToUpload" type="file">

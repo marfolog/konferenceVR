@@ -3820,6 +3820,8 @@ tbody.collapse.in {
 }
 .input-group[class*="col-"] {
   float: none;
+  padding-right: 0;
+  padding-left: 0;
 }
 .input-group .form-control {
   position: relative;
@@ -4253,7 +4255,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   right: 0;
   left: 0;
   z-index: 1030;
-  background-color: lightslategray
 }
 @media (min-width: 768px) {
   .navbar-fixed-top,
@@ -4492,7 +4493,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #101010;
+  background-color: #f8f8f8;
   border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {
