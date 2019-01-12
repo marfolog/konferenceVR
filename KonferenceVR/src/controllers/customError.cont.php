@@ -7,7 +7,7 @@
         }
         
           function showView(){
-             $this->view->msg = 'This page doesnt exist';
+             $this->view->msg = 'This page doesn\'t exist';
              $this->view->render('error');
          }
         

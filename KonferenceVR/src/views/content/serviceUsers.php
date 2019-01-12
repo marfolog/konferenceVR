@@ -47,7 +47,7 @@
                     echo "Autor";
                 }
                 echo "</td>";
-                echo "<td class='customers-td' ><form method='post' name='form_status' action='index.php?page=serviceUsers/changeStatus/".$value['id']."'>
+                echo "<td class='customers-td' ><form method='post' name='form_status' action='index.php?page=9/changeStatus/".$value['id']."'>
                           <select name='selectStatus' id='selectRule' class='form-control select_in_table'>";
                 
                 echo ServiceUsers_Model::getRuleForSelect($value['status']);
@@ -56,8 +56,8 @@
                 echo "<td class='customers-td'>" ;
                     if($value['block'] == 'true'){echo "Ano";} else {echo "Ne";}
                 echo  "</td>";
-                echo "<td class='customers-td edit-a'><a href='index.php?page=serviceUsers/blockUser/".$value['id']."' class='edit-a'>Upravit</a></td>";
-                echo "<td class='customers-td edit-a'><a href='index.php?page=serviceUsers/deleteUsers/".$value['id']."'/ class='edit-a'>Odstranit</a></td>";
+                echo "<td class='customers-td edit-a'><a href='index.php?page=9/blockUser/".$value['id']."' class='edit-a'>Upravit</a></td>";
+                echo "<td class='customers-td edit-a'><a href='index.php?page=9/deleteUsers/".$value['id']."'/ class='edit-a'>Odstranit</a></td>";
                 echo "</tr>";
             }
          } else {

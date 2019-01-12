@@ -18,7 +18,7 @@
                 if($article[0]['status'] == 0){
                     $count_active_rating = $count_active_rating + 1;
                     echo "<tr>";
-                    echo "<form method='post' action='index.php?page=articlesForRating/rating/".$value['id']."' name='form_rating'>";
+                    echo "<form method='post' action='index.php?page=4/rating/".$value['id']."' name='form_rating'>";
                     echo "<td class='customers-td' style='vertical-align: inherit;'><div style='color:yellow; font-weight:800;'>Název:</div> ".$article[0]['title']."</td>";
                     if($article[0]['path_to_file'] != 'nothing'){
                             echo "<td class='customers-td' style='vertical-align: inherit;' > <a href=";

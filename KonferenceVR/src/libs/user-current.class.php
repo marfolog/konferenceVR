@@ -26,7 +26,7 @@ class CurrentUser {
              }
         }
     
-        public static function getidCurrentUser(){
+        public static function getIdCurrentUser(){
              if(CurrentUser::isUserLoggedIn()){
                  return Session::readSession(SS_USER)['id'];
              } else {

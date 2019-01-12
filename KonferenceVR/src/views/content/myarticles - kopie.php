@@ -31,7 +31,7 @@
                             
                         </div>
                         
-                        <div class="box-myarticles text text_myrticles" >
+                        <div class="box-myarticles" >
                             <p><?php echo $value['text'] ?></p>
                         </div>
 

@@ -11,7 +11,7 @@
             $status = CurrentUser::getStatusCurrentUser();
             
             if($logged != "user_logged" && $status != "autor"){
-                header('location: index.php?page=index');
+                header('location: index.php?page=0');
                 exit;
             }
             
@@ -28,7 +28,7 @@
             $logged = Session::readSession(SS_LOGIN_STATUS);
             $status = CurrentUser::getStatusCurrentUser();
             if($logged != "user_logged" || $status != "autor"){
-                header('location: index.php?page=index');
+                header('location: index.php?page=0');
                 exit;
             } else {
                 $this->view->myArticles = $this->model->myArticlesList();
@@ -42,7 +42,7 @@
         
          function deleteArticle($id){   
           $this->model->deleteArticle($id);
-          header('location: index.php?page=myarticles');
+          header('location: index.php?page=6');
          } 
          
         

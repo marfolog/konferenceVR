@@ -6,7 +6,7 @@
     <div class="panel panel-users">
 
     <div class="panel-heading"> <h3>Přidání příspěvku</h3></div> 
-    <form class="form-horizontal" action="index.php?page=article/confirmArticle"  enctype="multipart/form-data" method="post"  id="article_form">
+    <form class="form-horizontal" action="index.php?page=3/confirmArticle"  enctype="multipart/form-data" method="post"  id="article_form">
     <div class="form-group">
       <label class="col-md-4 control-label">Autor:</label>  
       <div class="col-md-4 inputGroupContainer">
@@ -111,7 +111,7 @@
         <div class="panel panel-users">
 
         <div class="panel-heading"> <h3>Edit příspěvku</h3></div> 
-        <form class="form-horizontal" action="index.php?page=article/editArticle/<?php echo $editArticle['id']; ?>"  enctype="multipart/form-data" method="post"  id="article_form">
+        <form class="form-horizontal" action="index.php?page=3/editArticle/<?php echo $editArticle['id']; ?>"  enctype="multipart/form-data" method="post"  id="article_form">
         <div class="form-group">
           <label class="col-md-4 control-label">Autor:</label>  
           <div class="col-md-4 inputGroupContainer">

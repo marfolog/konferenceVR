@@ -9,7 +9,7 @@
             $status = CurrentUser::getStatusCurrentUser();
             
             if($logged != "user_logged" && $status!="admin"){
-                header('location: index.php?page=index');
+                header('location: index.php?page=0');
                 exit;
             }
         }
@@ -20,7 +20,7 @@
             $logged = Session::readSession(SS_LOGIN_STATUS);
             $status = CurrentUser::getStatusCurrentUser();
             if($logged != "user_logged" || $status != "admin"){
-                header('location: index.php?page=index');
+                header('location: index.php?page=0');
                 exit;
             } else {
                 $this->view->userList = $this->model->userList();
@@ -41,12 +41,12 @@
         
         function deleteUsers($id){
             $this->model->deleteUsers($id);
-             header('location: index.php?page=serviceUsers');
+             header('location: index.php?page=9');
         }
         
         function blockUser($id){
             $this->model->blockUser($id);
-             header('location: index.php?page=serviceUsers');
+             header('location: index.php?page=9');
         }
         
     }

@@ -9,7 +9,7 @@
             $status = CurrentUser::getStatusCurrentUser();
             
             if($logged != "user_logged" || $status!="admin"){
-                header('location: index.php?page=index');
+                header('location: index.php?page=0');
             }
         }
         
@@ -17,7 +17,7 @@
             $logged = Session::readSession(SS_LOGIN_STATUS);
             $status = CurrentUser::getStatusCurrentUser();
             if($logged != "user_logged" || $status != "admin"){
-                header('location: index.php?page=index');
+                header('location: index.php?page=0');
                 exit;
             } else {
                 $this->view->articles = $this->model->getUserArticlesInReviewStatusFromDB();
@@ -44,13 +44,13 @@
                 if($firstR != $secondR && $firstR != $thirdR){
                      Session::addSession(SS_REVIEW_LOG,'ok');
                     $this->model->addReviewer($id_article, $firstR);
-                    header('location: index.php?page=serviceArticles');
+                    header('location: index.php?page=8');
                 } else {
                     echo "<br>first - id article: ".$id_article;
                     Session::addSession(SS_REVIEW_LOG,'same_or_0');
                     Session::addSession(SS_REVIEW_LOG_ID, $id_article);
                     
-                    header('location: index.php?page=serviceArticles');
+                    header('location: index.php?page=8');
                     return;
                 }
             }
@@ -60,11 +60,11 @@
                 if($secondR != $firstR && $secondR != $thirdR ){
                     Session::addSession(SS_REVIEW_LOG,'ok');
                     $this->model->addReviewer($id_article, $secondR);
-                    header('location: index.php?page=serviceArticles');
+                    header('location: index.php?page=8');
                 } else {
                     Session::addSession(SS_REVIEW_LOG,'same_or_0');
                     Session::addSession(SS_REVIEW_LOG_ID, $id_article);
-                    header('location: index.php?page=serviceArticles');
+                    header('location: index.php?page=8');
                     return;
                 } 
             }
@@ -74,15 +74,15 @@
                 if($thirdR != $firstR && $thirdR != $secondR){
                     Session::addSession(SS_REVIEW_LOG,'ok');
                     $this->model->addReviewer($id_article, $thirdR);
-                    header('location: index.php?page=serviceArticles');
+                    header('location: index.php?page=8');
                 } else {
                     Session::addSession(SS_REVIEW_LOG,'same_or_0');
                     Session::addSession(SS_REVIEW_LOG_ID, $id_article);
-                    header('location: index.php?page=serviceArticles');
+                    header('location: index.php?page=8');
                     return;
                 }
             }
-            header('location: index.php?page=serviceArticles');
+            header('location: index.php?page=8');
     
             
         }
@@ -106,12 +106,12 @@
         
     function publicArticle($id_article){
         $this->model->publicArticle($id_article);
-        header('location: index.php?page=serviceArticles');
+        header('location: index.php?page=8');
     }
         
     function declineArticle($id_article){
         $this->model->declineArticle($id_article);
-        header('location: index.php?page=serviceArticles');   
+        header('location: index.php?page=8');   
     }
         
     }

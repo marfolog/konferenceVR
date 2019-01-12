@@ -9,16 +9,7 @@
         }
 
         
-        public function executeQuery($dotaz){
-            $res = $this->db->query($dotaz);
-            if (!$res) {
-                $error = $this->db->errorInfo();
-                echo $error[2];
-                return "error";
-            } else {
-                return $res;            
-            }
-         }
+
         
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -48,8 +39,20 @@
             Session::addSession(SS_STATUS_USER, CurrentUser::getStatusCurrentUser($user[0]));
             Session::addSession(SS_LOGIN_STATUS, 'user_logged');
             Session::addSession(SS_TRIED_LOGGIN, 'false');
-            header('location: index.php?page=index');
+            header('location: index.php?page=0');
     }
+        
+        
+        public function executeQuery($dotaz){
+            $res = $this->db->query($dotaz);
+            if (!$res) {
+                $error = $this->db->errorInfo();
+                echo $error[2];
+                return "error";
+            } else {
+                return $res;            
+            }
+         }
             
         
 //----------------------------------------------------------------------------------------------------------------------
@@ -100,18 +103,9 @@
                 }
             }
         }
-             
         
         
-        
-        
-        
-//----------------------------------------------------------------------------------------------------------------------
-//-----------------------------------------------FOR-REVIEW-------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------
-        
-        
-        /*
+              /*
             Vráti článek z tabulky review z databaze podle id
             je volana z ServiceArticles_Model kde je vyrvoren novy objekt Model
         */
@@ -121,10 +115,8 @@
             //sql injectin??
             return $review = $out->fetchAll();
        }
-        
-        
-        
-        
+             
+  
         
         
 

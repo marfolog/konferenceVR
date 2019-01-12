@@ -8,7 +8,7 @@
             $logged = Session::readSession(SS_LOGIN_STATUS);
             echo $logged;
             if($logged == "user_logged"){
-                header('location: index.php?page=index');
+                header('location: index.php?page=0');
                 exit;
             }
         }
@@ -16,7 +16,7 @@
          function showView(){
             $logged = Session::readSession(SS_LOGIN_STATUS);
             if($logged == "user_logged"){
-                header('location: index.php?page=index');
+                header('location: index.php?page=0');
                 exit;
             } else {               
                 $this->view->render("register");

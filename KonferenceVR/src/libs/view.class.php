@@ -16,24 +16,7 @@
         
         
         
-        
-          public function getRuleForSelect($status){
-              if($status =="admin"){
-                  $out = "<option selected value='0'>Administrátor</option> 
-                    <option value='1'>Autor</option>
-                    <option value='2'>Recenzent</option>";
-              } else if($status =="autor"){
-                   $out = "<option value='0'>Administrátor</option> 
-                    <option selected value='1'>Autor</option>
-                    <option value='2'>Recenzent</option>";
-              } else if($status =="recenzent"){
-                   $out = "<option selected value='0'>Administrátor</option> 
-                    <option value='1'>Autor</option>
-                    <option selected value='2'>Recenzent</option>";
-              }
-            
-            return $out;   
-         }
+
     }
         
 ?>

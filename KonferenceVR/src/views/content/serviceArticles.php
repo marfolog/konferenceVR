@@ -42,7 +42,7 @@
        
        <?php  
             foreach($this->articles as $key => $value){ ?>
-                <form action="index.php?page=serviceArticles/addReviewer/<?php echo $value['id']; ?>" method="post" id="form_review" enctype="multipart/form-data" >
+                <form action="index.php?page=8/addReviewer/<?php echo $value['id']; ?>" method="post" id="form_review" enctype="multipart/form-data" >
                     <tr>
                         <td class='customers-td' style="vertical-align: inherit;" rowspan=3> <?php echo $value['id'] ?></td>
                         <td class='customers-td' style="vertical-align: inherit;" rowspan=3> <?php echo $value['title'] ?></td>
@@ -81,9 +81,9 @@
                           
 
                         <td class='customers-td edit-a' style="vertical-align: inherit;" rowspan=3 >
-                            <a href="index.php?page=serviceArticles/publicArticle/<?php echo $value['id']; ?>" class='edit-a' style="color:yellow;">Publikovat</a>
+                            <a href="index.php?page=8/publicArticle/<?php echo $value['id']; ?>" class='edit-a' style="color:yellow;">Publikovat</a>
                             <br>
-                            <a href="index.php?page=serviceArticles/declineArticle/<?php echo $value['id']; ?>" class='edit-a'style="color:red;" >Zamítnout</a>
+                            <a href="index.php?page=8/declineArticle/<?php echo $value['id']; ?>" class='edit-a'style="color:red;" >Zamítnout</a>
                         </td>
                         
                     </tr>

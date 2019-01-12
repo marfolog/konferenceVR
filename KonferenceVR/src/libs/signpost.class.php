@@ -1,35 +1,40 @@
 <?php
 
-class Bootstrap{
+class Signpost{
     
     function __construct(){
          //PRO PSANI URL V URL RADKU PROHLIZECE- ZOBRAZENI POKUD BUDE VICE NEZ 1 VNORENI index.php?url=
-         
+        require '../config/signpost.conf.php';
+        
         $url = isset($_GET['page']) ? $_GET['page'] : null;;
         $url = rtrim($url, '/');
         $url = explode ('/',$url);
         //print_r($url); //- for the bugging
-
         
         //pokud neni zadana url (index.php?url=)
         if(empty($url[0])){
-            require '../controllers/index.cont.php';
+            require '../controllers/'.$web_pages[0].'.cont.php';
             $controller = new Index();
             $controller->showView();
             return false;
         }
-
-            $file = '../controllers/'.$url[0]. '.cont.php';
+        
+        $idPage = (int) $url[0];
+       // echo ($idPage)." - pole:".count($web_pages);
+        if($idPage < count($web_pages) && $idPage >= 0){
+            $file = '../controllers/'.$web_pages[$idPage]. '.cont.php';
             if(file_exists($file)){
                 require $file;
-                $controller = new $url[0];
-                $controller->loadModel($url[0]);
+                $controller = new $web_pages[$idPage];
+                $controller->loadModel($web_pages[$idPage]);
             } else {
                 $this->error();
                 return;
-            }   
-        
-        
+            }       
+        } else {
+              $this->error();
+              return;
+        }
             
         
         //volani metod
@@ -56,8 +61,9 @@ class Bootstrap{
     
     
     function error(){
-        require '../controllers/custom-error.cont.php';
-        $controller = new CustomError();
+        require '../config/signpost.conf.php';
+        require '../controllers/'.$web_pages[5].'.cont.php';
+        $controller = new $web_pages[5]();
         $controller->showView(); 
         return false;
     }

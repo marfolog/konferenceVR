@@ -111,17 +111,7 @@
                     return false;
             } 
         }
-        
-          /*
-            Vráti článek z tabulky review z databaze podle id
-            je volana z ServiceArticles_Model kde je vyrvoren novy objekt Model
-        */
-        public function getReviewFromDB_ID_ARTICLE($id_article){
-           $query = "SELECT * FROM ".DB_REVIEW_TABLE." WHERE `id_article` = '$id_article'";
-            $out = $this->executeQuery($query);
-            //sql injectin??
-            return $review = $out->fetchAll();
-       }
+
         
          /*
             Všechny články, ktere jsou v recnzijním řízení

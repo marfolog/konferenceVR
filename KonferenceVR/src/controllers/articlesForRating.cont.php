@@ -11,7 +11,7 @@
             $status = CurrentUser::getStatusCurrentUser();
             
             if($logged != "user_logged" && $status != "recenzent"){
-                header('location: index.php?page=index');
+                header('location: index.php?page=0');
                 exit;
             }
             
@@ -28,7 +28,7 @@
             $status = CurrentUser::getStatusCurrentUser();
              
             if($logged != "user_logged" || $status != "recenzent"){
-                header('location: index.php?page=index');
+                header('location: index.php?page=0');
                 exit;
             } else {
                  $this->view->articlesForRating = $this->model->getArticlesForRating();
@@ -54,7 +54,7 @@
                     $this->model->updateRatingArticle($id_rating, $ratingGroup_1, $ratingGroup_2, $ratingGroup_3, $ratingGroup_4);
             }
             
-            header("location: index.php?page=articlesForRating");
+            header("location: index.php?page=4");
         }
         
         

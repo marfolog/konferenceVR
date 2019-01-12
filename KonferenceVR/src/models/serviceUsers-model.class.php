@@ -81,10 +81,10 @@
                  if(Session::readSession(SS_USER)['status'] == "admin" && $status != "admin"){
                      $user = $this->getUserFromDB_ID($id);
                      Session::addSession(SS_USER, $user[0]);
-                     header('location: index.php?page=index');
+                     header('location: index.php?page=0');
                  }  
               }
-              header('location: index.php?page=serviceUsers');
+              header('location: index.php?page=9');
         }
         
         
@@ -96,7 +96,7 @@
                 $query = "UPDATE `users` SET `block`= 'true' WHERE `id` = '$idUser'";
                 $out = $this->executeQuery($query); 
             }
-             header('location: index.php?page=serviceUsers');
+             header('location: index.php?page=9');
            
         }
         

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="../public/css/bootstrap.css">
         <link rel="stylesheet" href="../public/css/bootstrap-theme.css">
         <link rel="stylesheet" href="../public/css/own_style.css">
+        <link rel="shortcut icon" href="../public/pictures/logo.png" />
         
     </head>
     
@@ -24,21 +25,21 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li><img src="../public/pictures/logo.png" class="img-circle" height="50" alt="Logo"></li>
-            <li><a href="index.php?page=index">Úvod</a></li>
-            <li><a href="index.php?page=publicArticles">Příspěvky</a></li>
+            <li><a href="index.php?page=0">Úvod</a></li>
+            <li><a href="index.php?page=7">Příspěvky</a></li>
             
 
             <?php Session::init(); 
             if(Session::readSession('LoginStatus') == 'user_logged'){ ?>
 
                 <?php if (CurrentUser::getStatusCurrentUser() != null && CurrentUser::getStatusCurrentUser() == "admin") { ?>
-                    <li><a href="index.php?page=serviceUsers">Správa uživatelů</a></li>
-                    <li><a href="index.php?page=serviceArticles">Správa příspěvků</a></li>
+                    <li><a href="index.php?page=9">Správa uživatelů</a></li>
+                    <li><a href="index.php?page=8">Správa příspěvků</a></li>
                 <?php } else if (CurrentUser::getStatusCurrentUser() != null && CurrentUser::getStatusCurrentUser() == "autor"){ ?>
-                    <li><a href="index.php?page=myarticles">Moje příspěvky</a></li>
-                    <li><a href="index.php?page=article/add">Přidání příspěvku</a></li>
+                    <li><a href="index.php?page=6">Moje příspěvky</a></li>
+                    <li><a href="index.php?page=3/add">Přidání příspěvku</a></li>
                 <?php } else if(CurrentUser::getStatusCurrentUser() != null && CurrentUser::getStatusCurrentUser() == "recenzent"){ ?>
-                                <li><a href="index.php?page=articlesForRating">Příspěvky k posouzení</a></li>
+                                <li><a href="index.php?page=4">Příspěvky k posouzení</a></li>
                     <?php } ?>
             <?php }?>
           
@@ -48,10 +49,10 @@
             if(Session::readSession('LoginStatus') == 'user_logged'){ ?>
                 <li><a><span class="glyphicon glyphicon-user"></span> Přihlášen: <?php echo CurrentUser::getNameCurrentUser(); ?> <?php echo "(".CurrentUser::getStatusStringCurrentUser().")"?></a></li>
                 <li><a></a></li>
-                <li><a href="index.php?page=login/logoutUser"><span class="glyphicon glyphicon-log-out"></span> Odhlásit</a></li>
+                <li><a href="index.php?page=1/logoutUser"><span class="glyphicon glyphicon-log-out"></span> Odhlásit</a></li>
             <?php } else{ ?>
-              <li><a href="index.php?page=login"><span class="glyphicon glyphicon-log-in"></span> Přihlásit</a> </li>
-              <li><a href="index.php?page=register">Registrace</a></li>
+              <li><a href="index.php?page=1"><span class="glyphicon glyphicon-log-in"></span> Přihlásit</a> </li>
+              <li><a href="index.php?page=2">Registrace</a></li>
             <?php }?>
           </ul>
         </div>
