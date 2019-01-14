@@ -5,7 +5,7 @@
     <div class="center">
         <div class="col-xs-16 col-sm-4"></div>
         <div class="col-xs-16 col-sm-4">
-               <form action="index.php?page=register/registerUser" method="POST">
+               <form action="index.php?page=2/registerUser" method="POST">
                 <div align="center"><h1>Registrace</h1></div>
               <div class="form-group">
                 <label for="log">Uživatelské jméno:</label>

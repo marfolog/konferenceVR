@@ -12,9 +12,6 @@
      <table class="table table-users">
        <thead class="table-header">
         <tr>
-            <th class='customers-td' style="text-align:center;  vertical-align: inherit;" rowspan="2" >
-                #
-            </th>
             <th class='customers-td' style="text-align:center;  vertical-align: inherit; " rowspan="2">
                 Název
             </th>
@@ -44,7 +41,7 @@
             foreach($this->articles as $key => $value){ ?>
                 <form action="index.php?page=8/addReviewer/<?php echo $value['id']; ?>" method="post" id="form_review" enctype="multipart/form-data" >
                     <tr>
-                        <td class='customers-td' style="vertical-align: inherit;" rowspan=3> <?php echo $value['id'] ?></td>
+                       
                         <td class='customers-td' style="vertical-align: inherit;" rowspan=3> <?php echo $value['title'] ?></td>
                         <td class='customers-td' style="vertical-align: inherit;" rowspan=3> <?php echo $value['author'] ?></td>
                         <td class='customers-td' >

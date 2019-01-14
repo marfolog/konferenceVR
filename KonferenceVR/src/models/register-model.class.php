@@ -26,7 +26,7 @@ class Register_Model extends Model {
             Session::addSession(SS_TRIED_REGISTER, 'true'); 
         } else if($this->isUserLoginInDB($log) == false){
             //registrovat
-            if(strlen($log) >= 6 && strlen($password1) >=6) {
+            if(strlen($log) >= 6 && strlen($log) <= 16 && strlen($password1) >=6) {
                  $password1 = md5($password1);
                  $password2 = md5($password2);
                  $user = $this->registerUserToDB($log, $password1);
@@ -36,7 +36,7 @@ class Register_Model extends Model {
                  Session::addSession(SS_TRIED_REGISTER, 'false'); 
             } else {
                 Session::addSession(SS_REGISTER_STATUS, 'short_login');
-            Session::addSession(SS_TRIED_REGISTER, 'true');
+                Session::addSession(SS_TRIED_REGISTER, 'true');
             }
         } else {
             Session::addSession(SS_REGISTER_STATUS, 'same_login');
@@ -56,9 +56,12 @@ class Register_Model extends Model {
     
       /*vrátí uživatele pokud je v DB*/
     public function isUserLoginInDB($log){
-        $query = "SELECT 'login' FROM ".DB_USER_TABLE." WHERE `login` = '$log'";
-        $out = $this->executeQuery($query);
-        //sql injectin??
+        $query = "SELECT 'login' FROM ".DB_USER_TABLE." WHERE `login` =:log";
+
+         $out = $this->db->prepare($query);
+         $log = htmlspecialchars($log);
+         $out->execute(array(":log" => $log));
+       
         $user = $out->fetchAll();
          if(!isset($user) || count($user) == 0){
              return false;
@@ -72,13 +75,18 @@ class Register_Model extends Model {
       /*Vloží uživatele do databáze*/
         public function registerUserToDB($log, $password){
             // zjistim, zda ho uz nemam v DB
-            $user = $this->getUserFromDB_LogPas($log,$password);
-            // mohu uzivatele vlozit do DB?
+            $user = $this->getUserFromDB_Log($log);
             if(!isset($user) || count($user) == 0){
                 /// ziskam vysledek dotazu klasicky
-                $query = "INSERT INTO ".DB_USER_TABLE." (login, password) VALUES ('$log', '$password');";
-                $this->executeQuery($query);
-                return $this->getUserFromDB_LogPas($log, $password)[0];
+                $query = "INSERT INTO ".DB_USER_TABLE." (login, password) VALUES (:log, :pas);";
+                $out = $this->db->prepare($query);
+
+                $unchanged = $log;
+                $log = htmlspecialchars($log);
+                $password = htmlspecialchars($password);
+                $out->execute(array(":log" => $log,":pas" => $password));
+                
+                return $this->getUserFromDB_Log($unchanged)[0];
             } else {
                 return null;
             }

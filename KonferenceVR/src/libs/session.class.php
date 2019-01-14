@@ -54,8 +54,7 @@ class Session{
     }
     
     /**
-     *  Odstrani danou session.
-     *  @param string $name Jmeno promenne.
+     *  Znici instanci session.
      */
     public static function destroy(){
         session_destroy();

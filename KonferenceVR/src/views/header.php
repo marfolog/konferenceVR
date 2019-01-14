@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="../public/css/bootstrap-theme.css">
         <link rel="stylesheet" href="../public/css/own_style.css">
         <link rel="shortcut icon" href="../public/pictures/logo.png" />
+        <meta charset="UTF-8">
         
     </head>
     

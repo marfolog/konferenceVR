@@ -12,9 +12,6 @@
      <table class="table table-users">
        <thead class="table-header">
         <tr>
-            <th class='customers-td' rowspan="2" colspan="1" >
-                #
-            </th>
             <th class='customers-td' rowspan="2" colspan="1">
                 Uživatelské jméno
             </th>
@@ -31,7 +28,6 @@
        <?php  
             foreach($this->userList as $key => $value){
                 echo "<tr>";
-                echo "<td class='customers-td'>".$value['id']."</td>";
                 echo "<td class='customers-td' td'>".$value['login'];
                 if($value['login'] == Session::readSession(SS_USER)['login']){
                     echo "<span style='color:red; font-weight:200;'> (Já)</span>";

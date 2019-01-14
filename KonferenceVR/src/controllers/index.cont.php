@@ -5,6 +5,7 @@
             parent::__construct();
         }
         
+        /*Necháváme zobrazit požadovanou stránku - zde neřešíme uživatele (přihlášeného)*/
           function showView(){
             Session::init();
             if(Session::readSession(SS_LOGIN_STATUS) != 'user_logged'){

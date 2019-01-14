@@ -18,7 +18,7 @@ class Login_Model extends Model {
             Session::addSession(SS_TRIED_LOGGIN, 'true');
            
         } else {
-            $user = $this->getUserFromDB_LogPas($log, $password);
+            $user = $this->getUserFromDB_Log($log);
            
             if($user != null && count($user) > 0){
                 if($user[0]['block'] == 'false'){

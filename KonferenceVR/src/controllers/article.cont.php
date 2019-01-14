@@ -1,6 +1,9 @@
 <?php
+
+    /*Kontroler ke strance s příspěvkem který bud editujeme a nebo vytváříme*/
     class Article extends Controller {
         
+        /*Konstruktor, kde ověřujeme jeslti se jedná o správného uživatele se statusem*/
         function __construct(){
             parent::__construct();
             Session::init();
@@ -17,7 +20,8 @@
             
         }
         
-          function showView(){
+        /*Necháváme zobrazit požadovanou stránku pokud se jedná o správného uživatele*/
+        function showView(){
             Session::init();
               
             $logged = Session::readSession(SS_LOGIN_STATUS);
@@ -35,29 +39,48 @@
             $this->view->editArticle =null;
             $this->view->render('article'); 
   
-          }
+        }
         
         
+        /*Zde voláme funkci, která nastaví do session, kterou verzi stránky chceme zobrazit
+         * 1. pro přidávání příspěvku
+         * 2. pro editaci příspěvku
+         * Zde se do session uloží verze první
+         */
         function add(){
             Session::addSession(SS_TYPE_ARTICLE_WEB, 'add');
         }
 
+        /*Zde voláme funkci, která nastaví do session, kterou verzi stránky chceme zobrazit
+         * 1. pro přidávání příspěvku
+         * 2. pro editaci příspěvku
+         * Zde se do session uloží verze druhá
+         */
         function edit($id){ 
             Session::addSession(SS_TYPE_ARTICLE_WEB, 'edit');
             Session::addSession(SS_EDIT_ARTICLE, $this->model->getArticle($id));
         }
         
-        
+        /*
+         * Potvrzení příspěvku - funkce která je zavolaná po stiknutí na tlačítko ve tvorbě příspěvku
+         *
+         */
         function confirmArticle(){
              $this->model->preprocessingArticle(null);
         }
         
-        
+        /*
+         * Potvrzení příspěvku - funkce která je zavolaná po stiknutí na tlačítko v editaci příspěvku
+         *
+         */
         function editArticle($id){
             $this->model->preprocessingArticle($id);
         }
         
-        
+        /*
+         * Funcke která vypisuje chybové hlášky do stránky za určitých okolností, pokud nastanou ve stránce
+         *
+         */
         function verifyLog($type){
             if(Session::readSession(SS_TRIED_ARTICLE) == 'true'){
 

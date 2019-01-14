@@ -1,4 +1,5 @@
 <?php
+    /*třída strající se o stránku se správou příspěvků*/
     class ServiceArticles extends Controller {
         
         function __construct(){
@@ -13,6 +14,7 @@
             }
         }
         
+        /*Necháváme zobrazit požadovanou stránku pokud se jedná o správného uživatele*/
         function showView(){
             $logged = Session::readSession(SS_LOGIN_STATUS);
             $status = CurrentUser::getStatusCurrentUser();
@@ -27,7 +29,10 @@
         
      
         
-        
+        /*
+         * Funkce která se volá, pokdu uživatel  - admin chce přidat příspěvek k posouzení- přidat recenzentům
+         *
+         */
         function addReviewer($id_article){
             $firstR = $_POST['select_reviwer_1'];
             $secondR = $_POST['select_reviwer_2'];
@@ -38,7 +43,7 @@
             echo "<br>T: ".$thirdR;
             
             
-            
+            /*Ověřování prvního recenzenta*/
             if($firstR != 0){
                 Session::addSession(SS_TRIED_REVIEW, 'true');
                 if($firstR != $secondR && $firstR != $thirdR){
@@ -54,7 +59,7 @@
                     return;
                 }
             }
-            
+            /*Ověřování druhého recenzenta*/
             if($secondR != 0) {
                 Session::addSession(SS_TRIED_REVIEW, 'true');
                 if($secondR != $firstR && $secondR != $thirdR ){
@@ -68,7 +73,7 @@
                     return;
                 } 
             }
-            
+            /*Ověřování třetího recenzenta*/
             if($thirdR != 0){
                  Session::addSession(SS_TRIED_REVIEW, 'true');
                 if($thirdR != $firstR && $thirdR != $secondR){
@@ -88,7 +93,10 @@
         }
         
         
-        
+        /*
+         * Funkce pro výpis hlášek v případě neočekávaných rekací uživatele
+         *
+         */
     function verifyLog($id_article){
             if(Session::readSession(SS_TRIED_REVIEW) == 'true' && Session::readSession(SS_REVIEW_LOG_ID) == $id_article){
                 switch (Session::readSession(SS_REVIEW_LOG)) {
@@ -103,12 +111,18 @@
             }   
     }
         
-        
+    /*
+     * Funkce se zavolá pokud admin stiskne na tlačítko publikvoat příspěvek
+     * @param id příspěvku
+     */
     function publicArticle($id_article){
         $this->model->publicArticle($id_article);
         header('location: index.php?page=8');
     }
-        
+    /*
+     * Funkce se zavolá pokud admin stiskne na tlačítko zamítnout příspěvek
+     * @param id příspěvku
+     */  
     function declineArticle($id_article){
         $this->model->declineArticle($id_article);
         header('location: index.php?page=8');   

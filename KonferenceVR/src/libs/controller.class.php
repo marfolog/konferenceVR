@@ -1,24 +1,27 @@
 <?php 
 
+/*Třída Kontroler, od ktere dědí ostatní třídy (kontrolery),
+  tzv, každá stránka má svůj kontroler a svoji třídu model,
+  který se stará o komunikaci s DB*/
 class Controller {
     
-    public $model;
-    function __construct(){
+    /*
+     * Vytvoreni konstruktoru a ten vyvori objekt Viee
+     */
+    function __construct(){        
         
-        
-        //vytvori konstruktor View
         $this->view = new View();  
-        
-      
     } 
     
-    
+    /*
+     * Funkce která načítá model, třídu ke každé stránce kde je zapotřebí komunikace s databází
+     * @param name - nazev modelu
+     */
     public function loadModel($name){ 
         $path= '../models/' .$name. '-model.class.php';
         if(file_exists($path)){
             require $path;
             $modelName = $name.'_Model';
-            //echo "Load model: ".$modelName."<br>";
             $this->model = new $modelName();            
         }
     }

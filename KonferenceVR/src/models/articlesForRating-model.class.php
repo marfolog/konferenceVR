@@ -69,8 +69,7 @@ class ArticlesForRating_Model extends Model {
     public function getReviewFromDB_ID_REVIEW ($id_reviewer){
            $query = "SELECT * FROM ".DB_REVIEW_TABLE." WHERE `id_reviewer` = '$id_reviewer' AND `total` = '0' ";
            $out = $this->executeQuery($query);
-            //sql injectin??
-            return $review = $out->fetchAll();
+           return $review = $out->fetchAll();
        }
     
     

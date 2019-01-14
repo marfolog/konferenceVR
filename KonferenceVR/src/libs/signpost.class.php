@@ -1,7 +1,12 @@
 <?php
 
+/*
+ * Třída, která reprezentuje rozcestník 
+ *
+ */
 class Signpost{
     
+    /*Konstruktor, který hlídá jaké stránky se mají otevřít popř. zobrazí chybovou stránku*/
     function __construct(){
          //PRO PSANI URL V URL RADKU PROHLIZECE- ZOBRAZENI POKUD BUDE VICE NEZ 1 VNORENI index.php?url=
         require '../config/signpost.conf.php';
@@ -59,7 +64,7 @@ class Signpost{
             }
     } 
     
-    
+    /*Funkce pro zobrazení chybové stránky*/
     function error(){
         require '../config/signpost.conf.php';
         require '../controllers/'.$web_pages[5].'.cont.php';

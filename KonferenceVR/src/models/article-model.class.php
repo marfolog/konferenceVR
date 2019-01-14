@@ -33,11 +33,12 @@ class Article_Model extends Model {
                         return false;
                 }
            }
+       
             /*V editačním modu chceme i soubor ponehcat protto vrátimu true že je vše ok*/
             if($id == null){
                 return false;
             } else {
-                 Session::addSession(SS_FILE, 'ok');
+                Session::addSession(SS_FILE, 'nothing');
                 return true;
             }
 
@@ -75,7 +76,7 @@ class Article_Model extends Model {
                            $dirToFile = Session::readSession(SS_FILE);
                            $inputTitle = $_POST['inputTitle'];
                            $output =  $_POST['abstract']; 
-                          if($id == null){
+                           if($id == null){
                                if($this->saveArticleToDB(date("Y-m-d H.i.s"), $authorOutput, $inputTitle, $output, $dirToFile)){
                                    Session::addSession(SS_ARTICLE_LOG,'articleReady'); 
                                } else {
@@ -92,6 +93,7 @@ class Article_Model extends Model {
                            Session::addSession(SS_TITLE, $_POST['inputTitle']);
                            Session::addSession(SS_ABSTRACT, $_POST['abstract']);
                            Session::addSession(SS_ARTICLE_LOG,'articleNotReady'); 
+                          
                       }
                   }    
                 }     
@@ -120,8 +122,17 @@ class Article_Model extends Model {
         /*add article*/
     public function saveArticleToDB($date, $author, $title, $text, $path_to_file){
         if(isset($date) && isset($author) && isset($title) && isset($text) && isset($path_to_file)){
-                 $query = "INSERT INTO ".DB_ARTICLES_TABLE." (date, author, title, text, path_to_file) VALUES ('$date', '$author','$title', '$text','$path_to_file');";
-                 $this->executeQuery($query);
+            
+                $query = "INSERT INTO ".DB_ARTICLES_TABLE." (date, author, title, text, path_to_file) VALUES (?,?,?,?,?);";
+                $out = $this->db->prepare($query);
+            
+                $date = htmlspecialchars($date);
+                $author = htmlspecialchars($author);
+                $title = htmlspecialchars($title);
+                $text = htmlspecialchars($text);
+                $path_to_file = htmlspecialchars($path_to_file);
+            
+                $out->execute(array($date, $author, $title, $text, $path_to_file));
                 return true; 
             } else {
                 return false;
@@ -129,14 +140,31 @@ class Article_Model extends Model {
     }
     
     
-    public function editArticleInDB($id, $date, $inputTitle, $output, $dirToFile){
-            if(isset($id) && isset($date) && isset($inputTitle) && isset($output) && isset($dirToFile)){
+    public function editArticleInDB($id, $date, $inputTitle, $text, $dirToFile){
+            if(isset($id) && isset($date) && isset($inputTitle) && isset($text) && isset($dirToFile)){
                 if($dirToFile == "nothing") {
-                    $query = "UPDATE ".DB_ARTICLES_TABLE." SET `status` = '0', date='$date', title='$inputTitle', text='$output' WHERE `id` = '$id'";
+                    $query = "UPDATE ".DB_ARTICLES_TABLE." SET status=:status, date=:date, title=:title, text=:text WHERE id =:id ";
+                    $out = $this->db->prepare($query);
+            
+                    $date = htmlspecialchars($date);
+                    $inputTitle = htmlspecialchars($inputTitle);
+                    $text = htmlspecialchars($text);
+            
+                    $out->execute(array(":status" => 0, ":date" => $date,":title" => $inputTitle, ":text" =>$text, ":id" => $id));
+                    
                 } else {
-                    $query = "UPDATE ".DB_ARTICLES_TABLE." SET `status` = '0', date='$date', title='$inputTitle', text='$output', path_to_file='$dirToFile' WHERE `id` = '$id'";
+                    $query = "UPDATE ".DB_ARTICLES_TABLE." SET status =:status, date=:date, title=:title, text=:text, path_to_file=:path WHERE id=:id";
+                    
+                    $out = $this->db->prepare($query);
+            
+                    $date = htmlspecialchars($date);
+                    $inputTitle = htmlspecialchars($inputTitle);
+                    $text = htmlspecialchars($text);
+                    $dirToFile = htmlspecialchars($dirToFile);
+            
+                    $out->execute(array(":status" => 0, ":date" => $date, ":title" => $inputTitle, ":text" =>$text, ":path" =>$dirToFile, ":id" => $id));
                 }   
-                $this->executeQuery($query);
+
                 return true; 
             } else {
                 echo "vracim nepovedlo se!";

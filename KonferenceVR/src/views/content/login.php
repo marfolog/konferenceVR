@@ -23,7 +23,7 @@
                    <?php Login::verifyLog() ?>
                 </label>
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Přihlásit</button>
         </form>
         </div>
         <div class="col-xs-16 col-sm-4"></div>

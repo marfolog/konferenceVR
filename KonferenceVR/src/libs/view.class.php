@@ -1,17 +1,15 @@
  <?php 
-  
+    /*třída která volá požadovanou stránku*/
     class View {
+        
+        
         function __construct(){
-            //echo "This is the view! <br>";
         }
         
-        
+         /*Zobrazení stránky*/
          public function render($name){
-             
              require '../views/header.php';
-             require '../views/content/' .$name.'.php';
-            // require '../views/footer.php';
-             
+             require '../views/content/' .$name.'.php'; 
         }
         
         

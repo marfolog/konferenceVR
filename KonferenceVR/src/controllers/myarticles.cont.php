@@ -1,4 +1,5 @@
 <?php
+    /*Kontroler pro stránku s vlastními příspěvky*/
     class MyArticles extends Controller {
         
         function __construct(){
@@ -18,7 +19,7 @@
         }
         
         
-        
+        /*Necháváme zobrazit požadovanou stránku pokud se jedná o správného uživatele*/
          function showView(){   
             if(Session::readSession(SS_LOGIN_STATUS) != 'user_logged'){
                     Session::addSession(SS_TRIED_LOGGIN,'false'); 
@@ -39,10 +40,13 @@
         
         
         
-        
+        /*
+         * Funkce pro vymazání vlastního příspěvku. Je volaná po stisknutí na tlačítko vymazat
+         *
+         */
          function deleteArticle($id){   
-          $this->model->deleteArticle($id);
-          header('location: index.php?page=6');
+              $this->model->deleteArticle($id);
+              header('location: index.php?page=6');
          } 
          
         

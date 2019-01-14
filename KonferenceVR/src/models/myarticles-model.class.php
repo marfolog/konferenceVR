@@ -48,9 +48,11 @@ class MyArticles_Model extends Model {
     
     
      public function getUserArticlesFromDB(){
-            $query = "SELECT id, date, author, title, text, path_to_file, status FROM ".DB_ARTICLES_TABLE." WHERE `author` = '".CurrentUser::getNameCurrentUser()."'";
-            $out = $this->executeQuery($query);
-            //sql injectin??
+            $query = "SELECT id, date, author, title, text, path_to_file, status FROM ".DB_ARTICLES_TABLE." WHERE `author` =:author";
+            $out = $this->db->prepare($query);
+            $author = htmlspecialchars(CurrentUser::getNameCurrentUser());
+            $out->execute(array(":author" => $author));
+         
             if($out != null || !isset($out)){
                 $articles = $out->fetchAll();
                  if(!isset($articles) || count($articles) == 0){

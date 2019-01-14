@@ -1,10 +1,15 @@
 <?php
+    /*Konstorler pro stránku s veřejnými příspěvky - tzv. publikovanými příspěvky*/
     class PublicArticles extends Controller {
         
         function __construct(){
             parent::__construct();
         }
         
+        
+        
+        
+        /*Necháváme zobrazit požadovanou stránku - zde neřešíme uživatele*/
           function showView(){
             Session::init();
             if(Session::readSession(SS_LOGIN_STATUS) != 'user_logged'){
